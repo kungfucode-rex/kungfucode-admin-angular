@@ -1,0 +1,18 @@
+<ul nz-menu [nzMode]="'inline'" [nzTheme]="'dark'">
+  <li nz-submenu *ngFor="let menuL1 of menus">
+    <span title>{{ menuL1.name }}</span>
+    <ul *ngIf="menuL1.subMenus">
+      <div *ngFor="let menuL2 of menuL1.subMenus">
+        <li nz-menu-item *ngIf="menuL2.subMenus === null" (click)="clickMenu(menuL2)">{{ menuL2.name }}</li>
+        <div *ngIf="menuL2.subMenus !== null">
+          <li nz-submenu>
+            <span title>{{ menuL2.name }}</span>
+            <ul>
+              <li nz-menu-item *ngFor="let menuL3 of menuL2.subMenus" (click)="clickMenu(menuL2)">{{ menuL3.name }}</li>
+            </ul>
+          </li>
+        </div>
+      </div>
+    </ul>
+  </li>
+</ul>
